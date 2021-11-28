@@ -3,24 +3,17 @@ import 'package:code_tasks/services/HttpService.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-class PostsNotifier with ChangeNotifier {
+class PostsNotifier extends ChangeNotifier {
   List<Items> _postList = [];
 
-  getPosts(BuildContext context) {
+  getPosts(BuildContext context) async {
     final HttpService httpService = HttpService();
-    FutureBuilder<List<Items>>(
-      future: httpService.getPosts(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.data != null) {
+    // final List<Items>
+    _postList = await httpService.getPosts();
+    notifyListeners();
           // final ResponseData responseData = snapshot.data;
-          final List<Items> posts = snapshot.data!;
-          _postList = snapshot.data!;
-        } else {
-          _postList = [];
-        }
-      },
-    );
+          // _postList = snapshot.data!;
+  }
   }
 
   // addPostToList(Post post){
@@ -35,4 +28,4 @@ class PostsNotifier with ChangeNotifier {
   // Future<bool> uploadPost(Post post) async{
   //   return await ApiService.addPost(post, this);
   // }
-}
+// }
