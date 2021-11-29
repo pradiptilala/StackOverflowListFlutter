@@ -1,5 +1,5 @@
 class Owner {
-  late int accountId;
+  late int? accountId;
   late int reputation;
   late int userId;
   late String userType;

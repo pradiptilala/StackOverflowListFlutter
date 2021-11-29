@@ -1,6 +1,6 @@
 import 'ItemModel.dart';
-import 'OwnerModel.dart';
 
+// This class used to store Api response data
 class ResponseData {
   List<Items>? items;
   bool? hasMore;
